@@ -58,30 +58,9 @@ class Vehicle {
     this.wanderForceWeight = 0;
   }
 
-  // on fait une méthode applyBehaviors qui applique les comportements
-  // seek et avoid
-  applyBehaviors(target, obstacles, vehicules) {
-
-    let seekForce = this.arrive(target);
-    let avoidForce = this.avoid(obstacles);
-    //let avoidForce = this.avoidAvecVehicules(obstacles, vehicules);
-    let separateForce = this.separate(vehicules);
-    let boudariesForce = this.boundaries(0, 0, width, height, 50);
-    let wanderForce = this.wander();
-
-    seekForce.mult(this.seekWeight);
-    avoidForce.mult(this.avoidWeight);
-    separateForce.mult(this.separateWeight);
-    boudariesForce.mult(this.boundariesWeight);
-    wanderForce.mult(this.wanderForceWeight);
-
-    this.applyForce(seekForce);
-    this.applyForce(avoidForce);
-    this.applyForce(separateForce);
-    this.applyForce(boudariesForce);
-    this.applyForce(wanderForce);
+  applyBehaviors() {
+    // to be redefined in subclasses
   }
-
 
   avoid(obstacles) {
     // calcul d'un vecteur ahead devant le véhicule

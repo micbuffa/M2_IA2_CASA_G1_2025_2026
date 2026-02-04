@@ -1,14 +1,14 @@
 let pursuer1, pursuer2;
 let target;
 let obstacles = [];
-let vehicules = [];
+let vaisseaux = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  pursuer1 = new Vehicle(100, 100);
-  pursuer2 = new Vehicle(random(width), random(height));
+  pursuer1 = new Vaisseau(100, 100);
+  pursuer2 = new Vaisseau(random(width), random(height));
 
-  vehicules.push(pursuer1);
+  vaisseaux.push(pursuer1);
   //vehicules.push(pursuer2);
 
   // On cree un obstace au milieu de l'écran
@@ -65,9 +65,9 @@ function draw() {
     o.show();
   })
 
-  vehicules.forEach(v => {
+  vaisseaux.forEach(v => {
     // pursuer = le véhicule poursuiveur, il vise un point devant la cible
-    v.applyBehaviors(target, obstacles, vehicules);
+    v.applyBehaviors(target, obstacles, vaisseaux);
 
     // déplacement et dessin du véhicule et de la target
     v.update();
@@ -82,17 +82,17 @@ function mousePressed() {
 
 function keyPressed() {
   if (key == "v") {
-    vehicules.push(new Vehicle(random(width), random(height)));
+    vaisseaux.push(new Vaisseau(random(width), random(height)));
   } else if (key == "d") {
     Vehicle.debug = !Vehicle.debug;
   } else if (key == "f") {
     // on crée 10 véhicules à des position random espacées de 50px
     // en x = 20, y = hauteur du  canvas sur deux
     for (let i = 0; i < 10; i++) {
-      let v = new Vehicle(20, 300)
+      let v = new Vaisseau(20, 300)
       // vitesse aléatoire
       v.vel = new p5.Vector(random(1, 5), random(1, 5));
-      vehicules.push(v);
+      vaisseaux.push(v);
     }
   } else if (key == "w") {
     // on cree un véhicule avec wander

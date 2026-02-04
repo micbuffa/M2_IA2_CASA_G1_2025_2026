@@ -13,6 +13,8 @@ class Snake extends Vehicle {
         // On crée les anneaux suivants
         for (let i = 1; i < length; i++) {
             let anneau = new Vehicle(x - i * 20, y, this.couleur);
+            anneau.maxForce = 2;
+            anneau.maxSpeed = 10;
             this.anneaux.push(anneau);
         }
     }
@@ -26,7 +28,7 @@ class Snake extends Vehicle {
         // Chaque anneau suit l'anneau précédent
         for (let i = 1; i < this.anneaux.length; i++) {
             let cible = this.anneaux[i - 1].pos;
-            let force = this.anneaux[i].arrive(cible, 30);
+            let force = this.anneaux[i].arrive(cible, 20);
             this.anneaux[i].applyForce(force);
             this.anneaux[i].update();
         }
